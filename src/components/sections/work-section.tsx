@@ -34,11 +34,12 @@ export function WorkSection({ scrollToSection }: { scrollToSection?: (index: num
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-start overflow-y-auto px-6 pt-24 md:px-12 lg:px-16"
+      style={{ scrollbarWidth: "none" }}
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl pb-12">
         <div
-          className={`mb-8 transition-all duration-700 md:mb-12 ${
+          className={`mb-8 transition-all duration-700 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
@@ -48,7 +49,7 @@ export function WorkSection({ scrollToSection }: { scrollToSection?: (index: num
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши программы</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
           {courses.map((course, i) => (
             <CourseCard key={i} course={course} index={i} isVisible={isVisible} scrollToSection={scrollToSection} />
           ))}
@@ -85,7 +86,7 @@ function CourseCard({
         <img
           src={course.image}
           alt={course.title}
-          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-64"
+          className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           style={{ objectPosition: course.number === "02" ? "center 20%" : "center center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
