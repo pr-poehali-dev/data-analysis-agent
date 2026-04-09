@@ -78,6 +78,7 @@ function CourseCard({
           src={course.image}
           alt={course.title}
           className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-64"
+          style={{ objectPosition: course.number === "02" ? "center 20%" : "center center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <span className="absolute left-4 top-4 font-mono text-xs text-foreground/60">{course.number}</span>
