@@ -9,6 +9,13 @@ const courses = [
     price: "1 000 ₽",
     direction: "left",
   },
+  {
+    number: "02",
+    title: "Парадоксальный сталкинг",
+    category: "Веб-приложение",
+    price: "250 ₽",
+    direction: "right",
+  },
 ]
 
 export function WorkSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
