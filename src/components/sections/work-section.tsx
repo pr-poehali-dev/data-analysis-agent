@@ -18,6 +18,14 @@ const courses = [
     direction: "right",
     image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/3a47cdb6-53a4-4ffd-81be-c9247969e412.png",
   },
+  {
+    number: "03",
+    title: "Генератор терапевтических историй",
+    category: "Веб-приложение",
+    price: "250 ₽",
+    direction: "left",
+    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/5b54d477-4f5a-49f5-8c4e-306151b0bc4a.png",
+  },
 ]
 
 export function WorkSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
