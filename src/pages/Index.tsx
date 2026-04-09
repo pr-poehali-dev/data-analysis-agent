@@ -297,7 +297,7 @@ export default function Index() {
           </div>
         </section>
 
-        <WorkSection />
+        <WorkSection scrollToSection={scrollToSection} />
         <ServicesSection />
         <AboutSection scrollToSection={scrollToSection} />
         <ContactSection />
