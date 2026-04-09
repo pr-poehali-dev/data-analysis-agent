@@ -4,9 +4,9 @@ import { MagneticButton } from "@/components/magnetic-button"
 const courses = [
   {
     number: "01",
-    title: "Эфирная охота",
-    category: "Видеокурс по самопознанию",
-    price: "5 000 ₽",
+    title: "Парадоксальный сталкинг",
+    category: "Книга",
+    price: "1 000 ₽",
     direction: "left",
   },
 ]
