@@ -16,7 +16,7 @@ const courses = [
     category: "Веб-приложение",
     price: "250 ₽",
     direction: "right",
-    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/0f6dd038-7149-4d9d-bb83-72d533cb6e46.png",
+    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/3a47cdb6-53a4-4ffd-81be-c9247969e412.png",
   },
 ]
 
