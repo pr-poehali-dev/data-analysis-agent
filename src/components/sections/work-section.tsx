@@ -12,11 +12,11 @@ const courses = [
   },
   {
     number: "02",
-    title: "Парадоксальный сталкинг",
+    title: "Генератор речевых парадоксов",
     category: "Веб-приложение",
     price: "250 ₽",
     direction: "right",
-    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/7b91280e-4929-4256-b56e-06601ec3144e.jpg",
+    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/0f6dd038-7149-4d9d-bb83-72d533cb6e46.png",
   },
 ]
 
