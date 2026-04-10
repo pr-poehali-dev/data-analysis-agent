@@ -7,6 +7,7 @@ import { CoursesSection } from "@/components/sections/courses-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
+import { GearDecoration, SteamPipe } from "@/components/steampunk-decorations"
 import { useRef, useEffect, useState } from "react"
 
 export default function Index() {
@@ -183,9 +184,9 @@ export default function Index() {
       >
         <Shader className="h-full w-full">
           <Swirl
-            colorA="#1275d8"
-            colorB="#e19136"
-            speed={0.8}
+            colorA="#8B4513"
+            colorB="#CD7F32"
+            speed={0.4}
             detail={0.8}
             blend={50}
             coarseX={40}
@@ -196,34 +197,41 @@ export default function Index() {
             fineY={40}
           />
           <ChromaFlow
-            baseColor="#0066ff"
-            upColor="#0066ff"
-            downColor="#d1d1d1"
-            leftColor="#e19136"
-            rightColor="#e19136"
-            intensity={0.9}
+            baseColor="#3d2b1f"
+            upColor="#8B4513"
+            downColor="#2a1a0e"
+            leftColor="#CD7F32"
+            rightColor="#B87333"
+            intensity={0.7}
             radius={1.8}
-            momentum={25}
+            momentum={15}
             maskType="alpha"
-            opacity={0.97}
+            opacity={0.95}
           />
         </Shader>
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
+      {/* Decorative gears */}
+      <GearDecoration className="fixed right-8 top-20 z-10 opacity-20 hidden md:block" size={100} speed="slow" />
+      <GearDecoration className="fixed right-[72px] top-[105px] z-10 opacity-15 hidden md:block" size={50} speed="fast" />
+      <GearDecoration className="fixed left-6 bottom-16 z-10 opacity-15 hidden md:block" size={70} speed="normal" />
+
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-6 transition-opacity duration-700 md:px-12 ${
+        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-5 transition-opacity duration-700 md:px-12 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
+        <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-copper/30 to-transparent" />
+        
         <button
           onClick={() => scrollToSection(0)}
-          className="flex items-center gap-2 transition-transform hover:scale-105"
+          className="flex items-center gap-3 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg overflow-hidden bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
+          <div className="flex h-10 w-10 items-center justify-center overflow-hidden border border-copper/40 bg-background/50 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-copper/60">
             <img src="https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/2b24859b-968e-48f4-a012-39c1873a003f.jpg" alt="Логотип" className="h-full w-full object-cover" />
           </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Магазин простых сложностей</span>
+          <span className="font-sans text-lg font-semibold tracking-widest uppercase copper-gradient-text">Магазин простых сложностей</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -238,69 +246,89 @@ export default function Index() {
             <button
               key={item.label}
               onClick={() => scrollToSection(item.index)}
-              className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === item.index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+              className={`group relative font-sans text-xs font-medium uppercase tracking-widest transition-colors ${
+                currentSection === item.index ? "text-copper" : "text-foreground/60 hover:text-copper/80"
               }`}
             >
               {item.label}
               <span
-                className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
+                className={`absolute -bottom-1 left-0 h-[1px] transition-all duration-300 bg-copper ${
                   currentSection === item.index ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
             </button>
           ))}
         </div>
-
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(5)}>
-          Начать путь
-        </MagneticButton>
       </nav>
 
+      {/* Section dots */}
       <div
-        ref={scrollContainerRef}
-        data-scroll-container
-        className={`relative z-10 flex h-screen overflow-x-auto overflow-y-hidden transition-opacity duration-700 ${
+        className={`fixed right-6 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-4 transition-opacity duration-700 md:right-10 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">Платформа саморазвития</p>
-            </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
-              <span className="text-balance">
-                Познай себя.<br />Стань собой.
-              </span>
-            </h1>
-            <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
-              <span className="text-pretty">
-                Видеокурсы и методические материалы для глубокого самопознания и личностного роста — в своём темпе, без лишнего шума.
-              </span>
-            </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
-              <MagneticButton
-                size="lg"
-                variant="primary"
-                onClick={() => scrollToSection(1)}
-              >
-                Смотреть курсы
-              </MagneticButton>
-              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(5)}>
-                Начать путь
-              </MagneticButton>
-            </div>
-          </div>
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <button
+            key={i}
+            onClick={() => scrollToSection(i)}
+            className="group relative flex items-center justify-center"
+          >
+            <div
+              className={`h-2 w-2 transition-all duration-500 ${
+                currentSection === i
+                  ? "scale-125 bg-copper shadow-[0_0_8px_hsl(var(--copper)/0.5)]"
+                  : "bg-foreground/20 hover:bg-copper/50"
+              }`}
+              style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
+            />
+          </button>
+        ))}
+        <SteamPipe direction="vertical" className="absolute -left-1 top-0 h-full" />
+      </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500">
-            <div className="flex items-center gap-2">
-              <p className="font-mono text-xs text-foreground/80">Листайте вправо</p>
-              <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">
-                <div className="h-2 w-2 animate-pulse rounded-full bg-foreground/80" />
-              </div>
+      {/* Hero section */}
+      <div
+        ref={scrollContainerRef}
+        className="flex h-screen w-full snap-x snap-mandatory overflow-x-auto"
+        style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory" }}
+        data-scroll-container
+      >
+        <section className="flex h-screen w-screen shrink-0 snap-start items-center justify-center px-6 md:px-12">
+          <div
+            className={`text-center transition-all duration-1000 ${
+              isLoaded ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+            }`}
+          >
+            <div className="mb-4 flex justify-center">
+              <GearDecoration size={40} speed="slow" className="opacity-40" />
+            </div>
+            <p className="mb-4 font-mono text-xs tracking-[0.3em] uppercase text-copper/70">
+              Est. MMXX
+            </p>
+            <h1 className="mb-6 font-sans text-5xl font-light leading-[1.1] tracking-wider text-foreground md:text-7xl lg:text-8xl steampunk-text-glow">
+              Магазин
+              <br />
+              <span className="copper-gradient-text font-semibold">простых</span>
+              <br />
+              сложностей
+            </h1>
+            <p className="mx-auto mb-10 max-w-lg font-serif text-base font-light leading-relaxed text-foreground/60 md:text-lg italic">
+              Пространство для глубокого самоисследования через видео, практики и авторские методики
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection(2)}>
+                Каталог
+              </MagneticButton>
+              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(4)}>
+                О нас
+              </MagneticButton>
+            </div>
+
+            <div className="mt-12 flex items-center justify-center gap-6">
+              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-copper/40" />
+              <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-foreground/30">scroll</span>
+              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-copper/40" />
             </div>
           </div>
         </section>
@@ -311,12 +339,6 @@ export default function Index() {
         <AboutSection scrollToSection={scrollToSection} />
         <ContactSection />
       </div>
-
-      <style>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </main>
   )
 }

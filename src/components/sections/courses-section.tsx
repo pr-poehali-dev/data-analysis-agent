@@ -1,5 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
+import { CornerBracket, Divider, GearDecoration } from "@/components/steampunk-decorations"
 
 const courses: {
   number: string
@@ -25,19 +26,28 @@ export function CoursesSection({ scrollToSection }: { scrollToSection?: (index: 
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Наши курсы</p>
+          <h2 className="font-sans text-5xl font-light tracking-wider text-foreground md:text-6xl lg:text-7xl steampunk-text-glow">
             Курсы
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши курсы</p>
+          <Divider className="mt-4 max-w-xs" />
         </div>
 
         {courses.length === 0 ? (
           <div
-            className={`flex items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5 py-24 transition-all duration-700 ${
+            className={`relative flex items-center justify-center steampunk-card py-24 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <p className="font-mono text-sm text-foreground/40">Курсы скоро появятся</p>
+            <CornerBracket position="top-left" className="left-3 top-3" />
+            <CornerBracket position="top-right" className="right-3 top-3" />
+            <CornerBracket position="bottom-left" className="bottom-3 left-3" />
+            <CornerBracket position="bottom-right" className="bottom-3 right-3" />
+            <div className="flex flex-col items-center gap-4">
+              <GearDecoration size={40} speed="slow" className="opacity-30" />
+              <p className="font-mono text-sm text-foreground/40">Курсы скоро появятся</p>
+              <p className="font-serif text-xs text-foreground/25 italic">Механизм запущен...</p>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
@@ -71,9 +81,14 @@ function CourseCard({
 
   return (
     <div
-      className={`group flex flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-700 hover:border-foreground/20 hover:bg-foreground/10 ${getRevealClass()}`}
+      className={`group relative flex flex-col overflow-hidden steampunk-card transition-all duration-700 hover:border-copper/40 hover:shadow-[0_0_24px_hsl(var(--copper)/0.15)] ${getRevealClass()}`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
+      <CornerBracket position="top-left" className="left-1 top-1 z-10" />
+      <CornerBracket position="top-right" className="right-1 top-1 z-10" />
+      <CornerBracket position="bottom-left" className="bottom-1 left-1 z-10" />
+      <CornerBracket position="bottom-right" className="bottom-1 right-1 z-10" />
+
       <div className="relative overflow-hidden">
         <img
           src={course.image}
@@ -81,17 +96,17 @@ function CourseCard({
           className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           style={{ objectPosition: course.number === "02" ? "center 20%" : "center center" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <span className="absolute left-4 top-4 font-mono text-xs text-foreground/60">{course.number}</span>
-        <span className="absolute right-4 top-4 rounded-full border border-foreground/20 bg-black/40 px-3 py-1 font-mono text-xs text-foreground/80 backdrop-blur-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+        <span className="absolute left-4 top-4 font-mono text-xs text-copper/70">{course.number}</span>
+        <span className="absolute right-4 top-4 border border-copper/30 bg-background/60 px-3 py-1 font-mono text-xs text-foreground/80 backdrop-blur-sm">
           {course.category}
         </span>
       </div>
 
       <div className="flex flex-1 flex-col justify-between p-5 md:p-6">
-        <h3 className="mb-4 font-sans text-xl font-light text-foreground md:text-2xl">{course.title}</h3>
+        <h3 className="mb-4 font-sans text-xl font-light tracking-wide text-foreground md:text-2xl">{course.title}</h3>
         <div className="flex items-center justify-between">
-          <span className="font-sans text-2xl font-light text-foreground">{course.price}</span>
+          <span className="font-serif text-2xl font-light text-copper">{course.price}</span>
           <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
             Купить
           </MagneticButton>

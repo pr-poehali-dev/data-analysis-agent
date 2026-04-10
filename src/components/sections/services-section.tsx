@@ -1,27 +1,28 @@
 import { useReveal } from "@/hooks/use-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useState } from "react"
+import { CornerBracket, Divider, GearDecoration } from "@/components/steampunk-decorations"
 
 const livePractices = [
   {
     number: "01",
     title: "Парадоксальный сталкинг",
     category: "Книга",
-    price: "1 000 ₽",
+    price: "1 000 \u20BD",
     image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/7b91280e-4929-4256-b56e-06601ec3144e.jpg",
   },
   {
     number: "02",
     title: "Генератор речевых парадоксов",
     category: "Веб-приложение",
-    price: "250 ₽",
+    price: "250 \u20BD",
     image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/3a47cdb6-53a4-4ffd-81be-c9247969e412.png",
   },
   {
     number: "03",
     title: "Генератор терапевтических историй",
     category: "Веб-приложение",
-    price: "250 ₽",
+    price: "250 \u20BD",
     image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/5b54d477-4f5a-49f5-8c4e-306151b0bc4a.png",
   },
 ]
@@ -36,14 +37,14 @@ const tabs = [
         number: "01",
         title: "3D Гимнастика",
         category: "Видеокурс",
-        price: "500 ₽",
+        price: "500 \u20BD",
         image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/abd59135-7636-41f1-b999-a66d9b3a4f4b.jpg",
       },
       {
         number: "02",
         title: "Парадоксальная терапия",
         category: "Видеокурс",
-        price: "1 000 ₽",
+        price: "1 000 \u20BD",
         image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/dc24097a-9ae6-4bbe-a442-532b5febd541.png",
       },
     ],
@@ -57,7 +58,7 @@ const tabs = [
         number: "01",
         title: "Интенсив 4-6 часов парадоксальный сталкинг!",
         category: "Интенсив",
-        price: "500 ₽",
+        price: "500 \u20BD",
         image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/ef4ca3a5-da68-4135-81a5-ba1f55855f89.png",
       },
     ],
@@ -94,13 +95,13 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Что вы получите</p>
+          <h2 className="font-sans text-5xl font-light tracking-wider text-foreground md:text-6xl lg:text-7xl steampunk-text-glow">
             Программы
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Что вы получите</p>
+          <Divider className="mt-4 max-w-xs" />
         </div>
 
-        {/* Tabs */}
         <div
           className={`mb-8 flex flex-wrap gap-2 transition-all duration-700 delay-150 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
@@ -110,10 +111,10 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
             <button
               key={tab.id}
               onClick={() => setActiveTab(i)}
-              className={`rounded-full border px-4 py-2 font-mono text-xs transition-all duration-300 ${
+              className={`border px-5 py-2 font-sans text-xs uppercase tracking-widest transition-all duration-300 ${
                 activeTab === i
-                  ? "border-foreground/60 bg-foreground/15 text-foreground"
-                  : "border-foreground/15 bg-foreground/5 text-foreground/50 hover:border-foreground/30 hover:text-foreground/80"
+                  ? "border-copper/60 bg-copper/15 text-copper shadow-[0_0_12px_hsl(var(--copper)/0.15)]"
+                  : "border-copper/15 bg-background/30 text-foreground/50 hover:border-copper/30 hover:text-foreground/80"
               }`}
             >
               {tab.title}
@@ -121,46 +122,54 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
           ))}
         </div>
 
-        {/* Content */}
         <div
           className={`transition-all duration-500 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
           key={activeTab}
         >
-          <p className="mb-6 max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base">
+          <p className="mb-6 max-w-xl font-serif text-sm leading-relaxed text-foreground/60 italic md:text-base">
             {current.description}
           </p>
 
           {current.cards.length === 0 ? (
-            <div className="flex items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5 py-20">
-              <p className="font-mono text-sm text-foreground/40">Скоро появятся материалы</p>
+            <div className="relative flex items-center justify-center steampunk-card py-20">
+              <CornerBracket position="top-left" className="left-2 top-2" />
+              <CornerBracket position="top-right" className="right-2 top-2" />
+              <CornerBracket position="bottom-left" className="bottom-2 left-2" />
+              <CornerBracket position="bottom-right" className="bottom-2 right-2" />
+              <div className="flex flex-col items-center gap-3">
+                <GearDecoration size={30} speed="slow" className="opacity-30" />
+                <p className="font-mono text-sm text-foreground/40">Скоро появятся материалы</p>
+              </div>
             </div>
           ) : (
             <div className="flex flex-wrap gap-4">
               {current.cards.map((item, i) => (
                 <div
                   key={i}
-                  className="group flex w-52 flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10"
+                  className="group relative flex w-52 flex-col overflow-hidden steampunk-card transition-all duration-300 hover:border-copper/40 hover:shadow-[0_0_20px_hsl(var(--copper)/0.15)]"
                   style={{ animationDelay: `${i * 100}ms` }}
                 >
+                  <CornerBracket position="top-left" className="left-0.5 top-0.5 z-10" />
+                  <CornerBracket position="top-right" className="right-0.5 top-0.5 z-10" />
+
                   <div className="relative overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                      style={{ objectPosition: item.number === "02" ? "center 20%" : "center center" }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <span className="absolute left-4 top-4 font-mono text-xs text-foreground/60">{item.number}</span>
-                    <span className="absolute right-4 top-4 rounded-full border border-foreground/20 bg-black/40 px-3 py-1 font-mono text-xs text-foreground/80 backdrop-blur-sm">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <span className="absolute left-3 top-3 font-mono text-xs text-copper/70">{item.number}</span>
+                    <span className="absolute right-3 top-3 border border-copper/30 bg-background/60 px-2 py-0.5 font-mono text-[10px] text-foreground/80 backdrop-blur-sm">
                       {item.category}
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-4">
-                    <h3 className="mb-3 font-sans text-sm font-light text-foreground">{item.title}</h3>
+                    <h3 className="mb-3 font-sans text-sm font-light tracking-wide text-foreground">{item.title}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="font-sans text-base font-light text-foreground">{item.price}</span>
+                      <span className="font-serif text-base font-light text-copper">{item.price}</span>
                       <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
                         Купить
                       </MagneticButton>

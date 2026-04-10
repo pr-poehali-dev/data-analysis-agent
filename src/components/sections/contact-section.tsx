@@ -2,6 +2,7 @@ import { useReveal } from "@/hooks/use-reveal"
 import { useState, type FormEvent } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
 import Icon from "@/components/ui/icon"
+import { Divider, CornerBracket, GearDecoration } from "@/components/steampunk-decorations"
 
 export function ContactSection() {
   const { ref, isVisible } = useReveal(0.3)
@@ -12,21 +13,15 @@ export function ContactSection() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       return
     }
 
     setIsSubmitting(true)
-
-    // Simulate form submission (replace with actual API call later)
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
     setIsSubmitting(false)
     setSubmitSuccess(true)
     setFormData({ name: "", email: "", message: "" })
-
-    // Reset success message after 5 seconds
     setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
@@ -43,12 +38,13 @@ export function ContactSection() {
                 isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
               }`}
             >
-              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
+              <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Первый шаг — за вами</p>
+              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-wider text-foreground md:mb-3 md:text-7xl lg:text-8xl steampunk-text-glow">
                 Начните
                 <br />
-                сегодня
+                <span className="copper-gradient-text">сегодня</span>
               </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Первый шаг — за вами</p>
+              <Divider className="mt-4 max-w-xs" />
             </div>
 
             <div className="space-y-4 md:space-y-8">
@@ -60,10 +56,10 @@ export function ContactSection() {
                 style={{ transitionDelay: "200ms" }}
               >
                 <div className="mb-1 flex items-center gap-2">
-                  <Icon name="Mail" size={12} className="text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Email</span>
+                  <Icon name="Mail" size={12} className="text-copper/60" />
+                  <span className="font-mono text-xs text-copper/60">Email</span>
                 </div>
-                <p className="text-base text-foreground transition-colors group-hover:text-foreground/70 md:text-2xl">
+                <p className="text-base text-foreground transition-colors group-hover:text-copper md:text-2xl">
                   hello@vnutr.ru
                 </p>
               </a>
@@ -75,14 +71,14 @@ export function ContactSection() {
                 style={{ transitionDelay: "350ms" }}
               >
                 <div className="mb-1 flex items-center gap-2">
-                  <Icon name="Sparkles" size={12} className="text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Формат</span>
+                  <Icon name="Sparkles" size={12} className="text-copper/60" />
+                  <span className="font-mono text-xs text-copper/60">Формат</span>
                 </div>
                 <p className="text-base text-foreground md:text-2xl">Онлайн, в своём темпе</p>
               </div>
 
               <div
-                className={`flex gap-2 pt-2 transition-all duration-700 md:pt-4 ${
+                className={`flex gap-3 pt-2 transition-all duration-700 md:pt-4 ${
                   isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                 }`}
                 style={{ transitionDelay: "500ms" }}
@@ -91,7 +87,7 @@ export function ContactSection() {
                   <a
                     key={social}
                     href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-foreground/60 hover:text-foreground/90"
+                    className="border-b border-transparent font-mono text-xs text-foreground/50 transition-all hover:border-copper/60 hover:text-copper"
                   >
                     {social}
                   </a>
@@ -100,78 +96,89 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right side - Minimal form */}
           <div className="flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Имя</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Ваше имя"
-                />
+            <div className="relative steampunk-card p-6 md:p-8">
+              <CornerBracket position="top-left" className="left-2 top-2" />
+              <CornerBracket position="top-right" className="right-2 top-2" />
+              <CornerBracket position="bottom-left" className="bottom-2 left-2" />
+              <CornerBracket position="bottom-right" className="bottom-2 right-2" />
+
+              <div className="mb-4 flex items-center gap-2">
+                <GearDecoration size={18} speed="slow" className="opacity-40" />
+                <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-copper/50">Напишите нам</span>
               </div>
 
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Email</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Сообщение</label>
-                <textarea
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="С чем хотите разобраться? Что ищете?"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "650ms" }}
-              >
-                <MagneticButton
-                  variant="primary"
-                  size="lg"
-                  className="w-full disabled:opacity-50"
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+                <div
+                  className={`transition-all duration-700 ${
+                    isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                  }`}
+                  style={{ transitionDelay: "200ms" }}
                 >
-                  {isSubmitting ? "Отправка..." : "Отправить"}
-                </MagneticButton>
-                {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-foreground/80">Сообщение отправлено!</p>
-                )}
-              </div>
-            </form>
+                  <label className="mb-1 block font-mono text-xs text-copper/60 md:mb-2">Имя</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    className="w-full border-b border-copper/30 bg-transparent py-1.5 font-serif text-sm text-foreground placeholder:text-foreground/30 focus:border-copper/60 focus:outline-none md:py-2 md:text-base"
+                    placeholder="Ваше имя"
+                  />
+                </div>
+
+                <div
+                  className={`transition-all duration-700 ${
+                    isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                  }`}
+                  style={{ transitionDelay: "350ms" }}
+                >
+                  <label className="mb-1 block font-mono text-xs text-copper/60 md:mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    className="w-full border-b border-copper/30 bg-transparent py-1.5 font-serif text-sm text-foreground placeholder:text-foreground/30 focus:border-copper/60 focus:outline-none md:py-2 md:text-base"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div
+                  className={`transition-all duration-700 ${
+                    isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                  }`}
+                  style={{ transitionDelay: "500ms" }}
+                >
+                  <label className="mb-1 block font-mono text-xs text-copper/60 md:mb-2">Сообщение</label>
+                  <textarea
+                    rows={3}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                    className="w-full border-b border-copper/30 bg-transparent py-1.5 font-serif text-sm text-foreground placeholder:text-foreground/30 focus:border-copper/60 focus:outline-none md:py-2 md:text-base"
+                    placeholder="С чем хотите разобраться? Что ищете?"
+                  />
+                </div>
+
+                <div
+                  className={`pt-2 transition-all duration-700 ${
+                    isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+                  }`}
+                  style={{ transitionDelay: "650ms" }}
+                >
+                  <MagneticButton
+                    variant="primary"
+                    size="lg"
+                    className="w-full disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Отправка..." : "Отправить"}
+                  </MagneticButton>
+                  {submitSuccess && (
+                    <p className="mt-3 text-center font-mono text-sm text-copper/80">Сообщение отправлено!</p>
+                  )}
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
