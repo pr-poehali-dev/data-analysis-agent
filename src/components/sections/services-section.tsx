@@ -26,9 +26,38 @@ const livePractices = [
   },
 ]
 
+const tabs = [
+  {
+    id: "video",
+    title: "Видеокурсы",
+    description: "Глубокие практики самопознания в формате структурированных видеоуроков — в своём темпе, в удобное время",
+    cards: [],
+  },
+  {
+    id: "materials",
+    title: "Методические материалы",
+    description: "Рабочие тетради, упражнения и техники для самостоятельной работы с собой",
+    cards: [],
+  },
+  {
+    id: "live",
+    title: "Живые практики",
+    description: "Онлайн-сессии и медитации для углублённой работы с внутренним миром",
+    cards: livePractices,
+  },
+  {
+    id: "personal",
+    title: "Личный путь",
+    description: "Индивидуальные программы, выстроенные под ваш запрос и уровень готовности",
+    cards: [],
+  },
+]
+
 export function ServicesSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
   const { ref, isVisible } = useReveal(0.3)
-  const [isOpen, setIsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState(0)
+
+  const current = tabs[activeTab]
 
   return (
     <section
@@ -38,7 +67,7 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
     >
       <div className="mx-auto w-full max-w-7xl pb-12">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-8 transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
@@ -48,139 +77,78 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Что вы получите</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
-          {[
-            {
-              title: "Видеокурсы",
-              description: "Глубокие практики самопознания в формате структурированных видеоуроков — в своём темпе, в удобное время",
-              direction: "top",
-              index: 0,
-            },
-            {
-              title: "Методические материалы",
-              description: "Рабочие тетради, упражнения и техники для самостоятельной работы с собой",
-              direction: "right",
-              index: 1,
-            },
-            {
-              title: "Живые практики",
-              description: "Онлайн-сессии и медитации для углублённой работы с внутренним миром",
-              direction: "left",
-              index: 2,
-              isExpandable: true,
-            },
-            {
-              title: "Личный путь",
-              description: "Индивидуальные программы, выстроенные под ваш запрос и уровень готовности",
-              direction: "bottom",
-              index: 3,
-            },
-          ].map((service) => (
-            <ServiceCard
-              key={service.index}
-              service={service}
-              isVisible={isVisible}
-              isOpen={service.isExpandable ? isOpen : false}
-              onToggle={service.isExpandable ? () => setIsOpen((v) => !v) : undefined}
-              scrollToSection={scrollToSection}
-            />
+        {/* Tabs */}
+        <div
+          className={`mb-8 flex flex-wrap gap-2 transition-all duration-700 delay-150 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          {tabs.map((tab, i) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(i)}
+              className={`rounded-full border px-4 py-2 font-mono text-xs transition-all duration-300 ${
+                activeTab === i
+                  ? "border-foreground/60 bg-foreground/15 text-foreground"
+                  : "border-foreground/15 bg-foreground/5 text-foreground/50 hover:border-foreground/30 hover:text-foreground/80"
+              }`}
+            >
+              {tab.title}
+            </button>
           ))}
+        </div>
+
+        {/* Content */}
+        <div
+          className={`transition-all duration-500 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+          key={activeTab}
+        >
+          <p className="mb-6 max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base">
+            {current.description}
+          </p>
+
+          {current.cards.length === 0 ? (
+            <div className="flex items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5 py-20">
+              <p className="font-mono text-sm text-foreground/40">Скоро появятся материалы</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+              {current.cards.map((item, i) => (
+                <div
+                  key={i}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10"
+                  style={{ animationDelay: `${i * 100}ms` }}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: item.number === "02" ? "center 20%" : "center center" }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <span className="absolute left-4 top-4 font-mono text-xs text-foreground/60">{item.number}</span>
+                    <span className="absolute right-4 top-4 rounded-full border border-foreground/20 bg-black/40 px-3 py-1 font-mono text-xs text-foreground/80 backdrop-blur-sm">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between p-4">
+                    <h3 className="mb-3 font-sans text-lg font-light text-foreground">{item.title}</h3>
+                    <div className="flex items-center justify-between">
+                      <span className="font-sans text-xl font-light text-foreground">{item.price}</span>
+                      <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
+                        Купить
+                      </MagneticButton>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
-  )
-}
-
-function ServiceCard({
-  service,
-  isVisible,
-  isOpen,
-  onToggle,
-  scrollToSection,
-}: {
-  service: { title: string; description: string; direction: string; index: number; isExpandable?: boolean }
-  isVisible: boolean
-  isOpen: boolean
-  onToggle?: () => void
-  scrollToSection?: (index: number) => void
-}) {
-  const getRevealClass = () => {
-    if (!isVisible) {
-      switch (service.direction) {
-        case "left": return "-translate-x-16 opacity-0"
-        case "right": return "translate-x-16 opacity-0"
-        case "top": return "-translate-y-16 opacity-0"
-        case "bottom": return "translate-y-16 opacity-0"
-        default: return "translate-y-12 opacity-0"
-      }
-    }
-    return "translate-x-0 translate-y-0 opacity-100"
-  }
-
-  return (
-    <div
-      className={`transition-all duration-700 ${getRevealClass()} ${service.isExpandable ? "md:col-span-2" : ""}`}
-      style={{ transitionDelay: `${service.index * 150}ms` }}
-    >
-      <button
-        className={`group w-full text-left ${service.isExpandable ? "cursor-pointer" : "cursor-default"}`}
-        onClick={onToggle}
-      >
-        <div className="mb-3 flex items-center gap-3">
-          <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
-          <span className="font-mono text-xs text-foreground/60">0{service.index + 1}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
-          {service.isExpandable && (
-            <span className={`mb-2 font-mono text-foreground/50 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
-              ↓
-            </span>
-          )}
-        </div>
-        <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
-      </button>
-
-      {service.isExpandable && (
-        <div
-          className={`overflow-hidden transition-all duration-500 ${isOpen ? "max-h-[600px] opacity-100 mt-6" : "max-h-0 opacity-0"}`}
-        >
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
-            {livePractices.map((item, i) => (
-              <div
-                key={i}
-                className={`group flex flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10 ${
-                  isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                }`}
-                style={{ transitionDelay: isOpen ? `${i * 100}ms` : "0ms" }}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    style={{ objectPosition: item.number === "02" ? "center 20%" : "center center" }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="absolute left-4 top-4 font-mono text-xs text-foreground/60">{item.number}</span>
-                  <span className="absolute right-4 top-4 rounded-full border border-foreground/20 bg-black/40 px-3 py-1 font-mono text-xs text-foreground/80 backdrop-blur-sm">
-                    {item.category}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col justify-between p-4">
-                  <h3 className="mb-3 font-sans text-lg font-light text-foreground">{item.title}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="font-sans text-xl font-light text-foreground">{item.price}</span>
-                    <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
-                      Купить
-                    </MagneticButton>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
   )
 }
