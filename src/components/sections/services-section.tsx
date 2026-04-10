@@ -36,7 +36,7 @@ const tabs = [
         number: "01",
         title: "3D Гимнастика",
         category: "Видеокурс",
-        price: "",
+        price: "500 ₽",
         image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/abd59135-7636-41f1-b999-a66d9b3a4f4b.jpg",
       },
     ],
