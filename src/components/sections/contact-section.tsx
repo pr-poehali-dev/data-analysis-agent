@@ -10,6 +10,8 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
+  const [submitError, setSubmitError] = useState("")
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -18,11 +20,28 @@ export function ContactSection() {
     }
 
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
-    setTimeout(() => setSubmitSuccess(false), 5000)
+    setSubmitError("")
+
+    try {
+      const res = await fetch("https://functions.poehali.dev/c30f4cca-df1d-48c8-af78-23a98d6aea18", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || "Ошибка отправки")
+      }
+
+      setSubmitSuccess(true)
+      setFormData({ name: "", email: "", message: "" })
+      setTimeout(() => setSubmitSuccess(false), 5000)
+    } catch (err: unknown) {
+      setSubmitError(err instanceof Error ? err.message : "Не удалось отправить")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -175,6 +194,9 @@ export function ContactSection() {
                   </MagneticButton>
                   {submitSuccess && (
                     <p className="mt-3 text-center font-mono text-sm text-copper/80">Сообщение отправлено!</p>
+                  )}
+                  {submitError && (
+                    <p className="mt-3 text-center font-mono text-sm text-red-400">{submitError}</p>
                   )}
                 </div>
               </form>
