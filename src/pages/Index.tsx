@@ -228,6 +228,7 @@ export default function Index() {
         <div className="hidden items-center gap-8 md:flex">
           {[
             { label: "Главная", index: 0 },
+            { label: "Живые практики", index: 1 },
             { label: "Программы", index: 2 },
             { label: "О нас", index: 3 },
             { label: "Контакты", index: 4 },

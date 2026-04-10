@@ -44,7 +44,7 @@ export function WorkSection({ scrollToSection }: { scrollToSection?: (index: num
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Курсы
+            Живые практики
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши программы</p>
         </div>
