@@ -39,6 +39,13 @@ const tabs = [
         price: "500 ₽",
         image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/abd59135-7636-41f1-b999-a66d9b3a4f4b.jpg",
       },
+      {
+        number: "02",
+        title: "Парадоксальная терапия",
+        category: "Видеокурс",
+        price: "1 000 ₽",
+        image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/dc24097a-9ae6-4bbe-a442-532b5febd541.png",
+      },
     ],
   },
   {
