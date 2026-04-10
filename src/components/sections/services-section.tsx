@@ -37,7 +37,15 @@ const tabs = [
     id: "materials",
     title: "Методические материалы",
     description: "Рабочие тетради, упражнения и техники для самостоятельной работы с собой",
-    cards: [],
+    cards: [
+      {
+        number: "01",
+        title: "Интенсив 4-6 часов парадоксальный сталкинг!",
+        category: "Интенсив",
+        price: "500 ₽",
+        image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/ef4ca3a5-da68-4135-81a5-ba1f55855f89.png",
+      },
+    ],
   },
   {
     id: "live",
