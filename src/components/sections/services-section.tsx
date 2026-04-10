@@ -122,18 +122,18 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
               <p className="font-mono text-sm text-foreground/40">Скоро появятся материалы</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+            <div className="flex flex-wrap gap-4">
               {current.cards.map((item, i) => (
                 <div
                   key={i}
-                  className="group flex flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10"
+                  className="group flex w-52 flex-col overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10"
                   style={{ animationDelay: `${i * 100}ms` }}
                 >
                   <div className="relative overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-28 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       style={{ objectPosition: item.number === "02" ? "center 20%" : "center center" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -143,9 +143,9 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-4">
-                    <h3 className="mb-3 font-sans text-lg font-light text-foreground">{item.title}</h3>
+                    <h3 className="mb-3 font-sans text-sm font-light text-foreground">{item.title}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="font-sans text-xl font-light text-foreground">{item.price}</span>
+                      <span className="font-sans text-base font-light text-foreground">{item.price}</span>
                       <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
                         Купить
                       </MagneticButton>
