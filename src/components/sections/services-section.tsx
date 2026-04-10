@@ -171,7 +171,7 @@ function ServiceCard({
                   <h3 className="mb-3 font-sans text-lg font-light text-foreground">{item.title}</h3>
                   <div className="flex items-center justify-between">
                     <span className="font-sans text-xl font-light text-foreground">{item.price}</span>
-                    <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(4)}>
+                    <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
                       Купить
                     </MagneticButton>
                   </div>

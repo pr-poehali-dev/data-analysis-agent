@@ -1,34 +1,16 @@
 import { useReveal } from "@/hooks/use-reveal"
 import { MagneticButton } from "@/components/magnetic-button"
 
-const courses = [
-  {
-    number: "01",
-    title: "Парадоксальный сталкинг",
-    category: "Книга",
-    price: "1 000 ₽",
-    direction: "left",
-    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/7b91280e-4929-4256-b56e-06601ec3144e.jpg",
-  },
-  {
-    number: "02",
-    title: "Генератор речевых парадоксов",
-    category: "Веб-приложение",
-    price: "250 ₽",
-    direction: "right",
-    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/3a47cdb6-53a4-4ffd-81be-c9247969e412.png",
-  },
-  {
-    number: "03",
-    title: "Генератор терапевтических историй",
-    category: "Веб-приложение",
-    price: "250 ₽",
-    direction: "left",
-    image: "https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/bucket/5b54d477-4f5a-49f5-8c4e-306151b0bc4a.png",
-  },
-]
+const courses: {
+  number: string
+  title: string
+  category: string
+  price: string
+  direction: string
+  image: string
+}[] = []
 
-export function WorkSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+export function CoursesSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -44,16 +26,26 @@ export function WorkSection({ scrollToSection }: { scrollToSection?: (index: num
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Живые практики
+            Курсы
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши программы</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши курсы</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
-          {courses.map((course, i) => (
-            <CourseCard key={i} course={course} index={i} isVisible={isVisible} scrollToSection={scrollToSection} />
-          ))}
-        </div>
+        {courses.length === 0 ? (
+          <div
+            className={`flex items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5 py-24 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <p className="font-mono text-sm text-foreground/40">Курсы скоро появятся</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
+            {courses.map((course, i) => (
+              <CourseCard key={i} course={course} index={i} isVisible={isVisible} scrollToSection={scrollToSection} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
