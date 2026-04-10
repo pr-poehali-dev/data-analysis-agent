@@ -148,7 +148,7 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="h-28 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full object-contain transition-transform duration-500 group-hover:scale-105"
                       style={{ objectPosition: item.number === "02" ? "center 20%" : "center center" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
