@@ -226,18 +226,23 @@ export default function Index() {
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Главная", "Курсы", "Программы", "О нас", "Контакты"].map((item, index) => (
+          {[
+            { label: "Главная", index: 0 },
+            { label: "Программы", index: 2 },
+            { label: "О нас", index: 3 },
+            { label: "Контакты", index: 4 },
+          ].map((item) => (
             <button
-              key={item}
-              onClick={() => scrollToSection(index)}
+              key={item.label}
+              onClick={() => scrollToSection(item.index)}
               className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                currentSection === item.index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
               }`}
             >
-              {item}
+              {item.label}
               <span
                 className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
-                  currentSection === index ? "w-full" : "w-0 group-hover:w-full"
+                  currentSection === item.index ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
             </button>
