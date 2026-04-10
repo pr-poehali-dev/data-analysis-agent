@@ -96,7 +96,7 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
           }`}
         >
           <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Что вы получите</p>
-          <h2 className="font-sans text-5xl font-light tracking-wider text-foreground md:text-6xl lg:text-7xl steampunk-text-glow">
+          <h2 className="font-display text-5xl font-bold tracking-wider md:text-6xl lg:text-7xl metal-emboss">
             Программы
           </h2>
           <Divider className="mt-4 max-w-xs" />
@@ -169,7 +169,7 @@ export function ServicesSection({ scrollToSection }: { scrollToSection?: (index:
                   <div className="flex flex-1 flex-col justify-between p-4">
                     <h3 className="mb-3 font-sans text-sm font-light tracking-wide text-foreground">{item.title}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="font-serif text-base font-light text-copper">{item.price}</span>
+                      <span className="font-display text-sm font-bold metal-emboss-light">{item.price}</span>
                       <MagneticButton variant="secondary" size="sm" onClick={() => scrollToSection?.(5)}>
                         Купить
                       </MagneticButton>

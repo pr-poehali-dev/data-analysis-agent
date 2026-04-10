@@ -27,7 +27,7 @@ export function CoursesSection({ scrollToSection }: { scrollToSection?: (index: 
           }`}
         >
           <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Наши курсы</p>
-          <h2 className="font-sans text-5xl font-light tracking-wider text-foreground md:text-6xl lg:text-7xl steampunk-text-glow">
+          <h2 className="font-display text-5xl font-bold tracking-wider md:text-6xl lg:text-7xl metal-emboss">
             Курсы
           </h2>
           <Divider className="mt-4 max-w-xs" />

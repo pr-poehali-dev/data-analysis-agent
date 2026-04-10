@@ -18,8 +18,8 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           }`}
         >
           <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ О нас</p>
-          <h2 className="font-sans text-3xl font-light tracking-wider text-foreground steampunk-text-glow md:text-5xl">
-            Путь к себе <span className="copper-gradient-text">настоящему</span>
+          <h2 className="font-display text-3xl font-bold tracking-wider md:text-5xl metal-emboss">
+            Путь к себе <span className="copper-gradient-text font-black">настоящему</span>
           </h2>
           <Divider className="mt-3 max-w-xs" />
         </div>
@@ -45,7 +45,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             { value: "12+", label: "Курсов" },
           ].map((stat, i) => (
             <div key={i} className="border-l-2 border-copper/30 pl-3 md:pl-6">
-              <div className="text-2xl font-light text-copper steampunk-text-glow md:text-4xl">{stat.value}</div>
+              <div className="text-2xl font-bold metal-emboss-light md:text-4xl font-display">{stat.value}</div>
               <div className="mt-1 font-mono text-[10px] tracking-wider text-foreground/40 md:text-xs">{stat.label}</div>
             </div>
           ))}

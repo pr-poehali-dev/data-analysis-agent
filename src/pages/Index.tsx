@@ -231,7 +231,7 @@ export default function Index() {
           <div className="flex h-10 w-10 items-center justify-center overflow-hidden border border-copper/40 bg-background/50 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-copper/60">
             <img src="https://cdn.poehali.dev/projects/97701dc1-edd8-4a67-adcd-82c0ea3fc857/files/2b24859b-968e-48f4-a012-39c1873a003f.jpg" alt="Логотип" className="h-full w-full object-cover" />
           </div>
-          <span className="font-sans text-lg font-semibold tracking-widest uppercase copper-gradient-text">Магазин простых сложностей</span>
+          <span className="font-display text-lg font-bold tracking-widest uppercase metal-emboss-light">Магазин простых сложностей</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -305,10 +305,10 @@ export default function Index() {
             <p className="mb-4 font-mono text-xs tracking-[0.3em] uppercase text-copper/70">
               Est. MMXX
             </p>
-            <h1 className="mb-6 font-sans text-5xl font-light leading-[1.1] tracking-wider text-foreground md:text-7xl lg:text-8xl steampunk-text-glow">
+            <h1 className="mb-6 font-display text-5xl font-bold leading-[1.1] tracking-wider md:text-7xl lg:text-8xl metal-emboss">
               Магазин
               <br />
-              <span className="copper-gradient-text font-semibold">простых</span>
+              <span className="copper-gradient-text font-black">простых</span>
               <br />
               сложностей
             </h1>

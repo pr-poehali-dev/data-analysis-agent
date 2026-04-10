@@ -39,10 +39,10 @@ export function ContactSection() {
               }`}
             >
               <p className="mb-2 font-mono text-[10px] tracking-[0.4em] uppercase text-copper/60">/ Первый шаг — за вами</p>
-              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-wider text-foreground md:mb-3 md:text-7xl lg:text-8xl steampunk-text-glow">
+              <h2 className="mb-2 font-display text-4xl font-bold leading-[1.05] tracking-wider md:mb-3 md:text-7xl lg:text-8xl metal-emboss">
                 Начните
                 <br />
-                <span className="copper-gradient-text">сегодня</span>
+                <span className="copper-gradient-text font-black">сегодня</span>
               </h2>
               <Divider className="mt-4 max-w-xs" />
             </div>
